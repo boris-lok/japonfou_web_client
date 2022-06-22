@@ -1,0 +1,24 @@
+@import "src/constants";
+
+.editor-wrapper {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 20vh auto;
+  box-shadow: 0 0 10px -5px $black-shadow;
+  border-radius: .5rem;
+
+  .btn-group {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem 1rem;
+    justify-content: space-around;
+  }
+}
+
+@media (min-width: 768px) {
+  .editor-wrapper {
+    width: 50vw;
+    max-width: 30rem;
+  }
+}

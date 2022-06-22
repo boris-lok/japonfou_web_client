@@ -1,0 +1,55 @@
+<div class="editor-wrapper">
+  <mat-card>
+    <mat-card-title>
+      Customer Form
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="customerForm">
+        <mat-form-field>
+          <mat-label>Customer name</mat-label>
+          <input matInput
+                 type="text"
+                 class="form-control"
+                 name="name"
+                 formControlName="name"
+                 placeholder="Please input a customer name.">
+          <mat-error *ngIf="customerForm.get('name')?.hasError('required')">
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Customer Email</mat-label>
+          <input matInput
+                 type="email"
+                 class="form-control"
+                 name="email"
+                 formControlName="email"
+                 placeholder="Please input a customer email.">
+          <mat-error *ngIf="customerForm.get('email')?.hasError('pattern')">
+            Email format is invalid.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Customer Phone</mat-label>
+          <input matInput
+                 type="tel"
+                 class="form-control"
+                 name="phone"
+                 formControlName="phone"
+                 placeholder="Please input a customer phone.">
+          <mat-error *ngIf="customerForm.get('phone')?.hasError('pattern')">
+            Phone format is invalid, only accept '0-9- +*'
+          </mat-error>
+        </mat-form-field>
+
+        <div class="btn-group">
+          <button mat-raised-button (click)="cancel()">Cancel</button>
+          <button mat-raised-button color="primary" (click)="submit()" [disabled]="customerForm.invalid">Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
