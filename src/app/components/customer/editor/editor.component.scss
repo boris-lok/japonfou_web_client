@@ -14,6 +14,11 @@
     margin: 0.5rem 1rem;
     justify-content: space-around;
   }
+
+  .error {
+    color: $error-msg;
+    padding: 0.75rem 0 0.25rem 0.25rem;
+  }
 }
 
 @media (min-width: 768px) {

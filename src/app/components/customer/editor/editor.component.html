@@ -3,6 +3,9 @@
     <mat-card-title>
       Customer Form
     </mat-card-title>
+    <mat-card-subtitle *ngIf="errorMessage !== null">
+      <p class="error">{{ errorMessage }}</p>
+    </mat-card-subtitle>
     <mat-card-content>
       <form [formGroup]="customerForm">
         <mat-form-field>
@@ -44,10 +47,20 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="btn-group">
-          <button mat-raised-button (click)="cancel()">Cancel</button>
-          <button mat-raised-button color="primary" (click)="submit()" [disabled]="customerForm.invalid">Submit</button>
-        </div>
+        <mat-card-actions align="end">
+          <button mat-raised-button
+                  (click)="cancel()">Cancel
+          </button>
+          <button mat-raised-button
+                  color="primary"
+                  (click)="submit()"
+                  [disabled]="customerForm.invalid">Submit
+          </button>
+        </mat-card-actions>
+
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate" *ngIf="loading.loading$ | async"></mat-progress-bar>
+        </mat-card-footer>
       </form>
     </mat-card-content>
   </mat-card>
