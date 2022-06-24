@@ -1,19 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {ICustomer} from "../../../models/customer.class";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../../../environments/environment";
 import {CustomerService} from "../../../services/customer.service";
-import {concatAll, finalize, of, startWith, Subject, takeUntil, tap} from "rxjs";
+import {finalize, Subject, takeUntil} from "rxjs";
 import {Location} from "@angular/common";
-import {HttpErrorResponse} from "@angular/common/http";
 import {LoadingService} from "../../../services/loading.service";
-
-interface HttpRequestState<T> {
-  isLoading: boolean;
-  value?: T,
-  error?: HttpErrorResponse | Error,
-}
 
 @Component({
   selector: 'app-editor',

@@ -1,0 +1,30 @@
+@import "src/constants";
+
+.listview-wrapper {
+  width: 100%;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+
+  .mat-table {
+    width: 100%;
+    box-shadow: 0 0 10px -5px $black-shadow;
+  }
+
+  .divider {
+    margin: 3vw 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .listview-wrapper {
+    width: 80vw;
+    margin: 10vh auto;
+  }
+}
+
+@media (min-width: 1920px) {
+  .listview-wrapper {
+    width: 70vw;
+  }
+}

@@ -12,6 +12,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { ListviewComponent } from './components/customer/listview/listview.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -19,18 +21,20 @@ import { ListviewComponent } from './components/customer/listview/listview.compo
     EditorComponent,
     ListviewComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatInputModule,
-        MatCardModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatProgressBarModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatProgressBarModule,
+    MatTableModule,
+    MatDividerModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

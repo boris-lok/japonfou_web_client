@@ -59,7 +59,8 @@
         </mat-card-actions>
 
         <mat-card-footer>
-          <mat-progress-bar mode="indeterminate" *ngIf="loading.loading$ | async"></mat-progress-bar>
+          <mat-progress-bar mode="indeterminate"
+                            *ngIf="loading.loading$ | async"></mat-progress-bar>
         </mat-card-footer>
       </form>
     </mat-card-content>

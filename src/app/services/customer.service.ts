@@ -27,4 +27,17 @@ export class CustomerService {
         .post('/v1/customers', customer);
     }
   }
+
+  getAllCustomers = (keyword: string | null, page: number, page_size: number): Observable<ICustomer[]> => {
+    let params = new HttpParams({
+      fromObject: {
+        ...keyword && {query: keyword},
+        'page': page,
+        'page_size': page_size,
+      }
+    });
+
+    return this.apiService
+      .get('/v1/customers', params)
+  }
 }
