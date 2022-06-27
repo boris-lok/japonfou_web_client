@@ -14,12 +14,14 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { ListviewComponent } from './components/customer/listview/listview.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
+import { ScrollStartDirective } from './directives/scroll-start.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorComponent,
-    ListviewComponent
+    ListviewComponent,
+    ScrollStartDirective
   ],
   imports: [
     BrowserModule,

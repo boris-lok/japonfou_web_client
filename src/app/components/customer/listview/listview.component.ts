@@ -16,6 +16,7 @@ export class ListviewComponent implements OnInit, OnDestroy {
   ngDestroy$: Subject<any>;
   customers: MatTableDataSource<ICustomer>;
   displayedColumns: string[] = ['id', 'name', 'email', 'phone'];
+  paginationThreshold: number = 50;
 
   constructor(
     private customerService: CustomerService,
@@ -43,20 +44,31 @@ export class ListviewComponent implements OnInit, OnDestroy {
   fetchCustomers = () => {
     this.loading.show();
     this.customerService
-      .getAllCustomers(null, this.paginationService.getPage(), this.paginationService.page_size)
+      .getAllCustomers(null, this.paginationService.page, this.paginationService.page_size)
       .pipe(
         takeUntil(this.ngDestroy$),
         finalize(this.loading.hide)
       )
       .subscribe({
         next: (data) => {
-          console.log(data);
-          this.customers.data = data;
+          this.customers.data = [...this.customers.data, ...data];
         },
         error: (e) => {
           console.error(e);
         }
       })
+  }
 
+  onTableScroll = (e: any) => {
+    const containerHeight = e.target.offsetHeight;
+    const tableScrollHeight = e.target.scrollHeight;
+    const scrollOffset = e.target.scrollTop;
+
+    const limit = tableScrollHeight - containerHeight - this.paginationThreshold;
+
+    if (scrollOffset > limit) {
+      console.log(`load more data`);
+      this.paginationService.next();
+    }
   }
 }
