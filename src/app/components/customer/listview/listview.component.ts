@@ -32,7 +32,9 @@ export class ListviewComponent implements OnInit, OnDestroy {
       .page$
       .pipe(takeUntil(this.ngDestroy$))
       .subscribe({
-        next: (_) => this.fetchCustomers(),
+        next: (v) => {
+          this.fetchCustomers();
+        },
       })
   }
 
@@ -44,7 +46,7 @@ export class ListviewComponent implements OnInit, OnDestroy {
   fetchCustomers = () => {
     this.loading.show();
     this.customerService
-      .getAllCustomers(null, this.paginationService.page, this.paginationService.page_size)
+      .getAllCustomers(null, this.paginationService.getPage(), this.paginationService.page_size)
       .pipe(
         takeUntil(this.ngDestroy$),
         finalize(this.loading.hide)
