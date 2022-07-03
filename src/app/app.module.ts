@@ -15,13 +15,18 @@ import { ListviewComponent } from './components/customer/listview/listview.compo
 import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
 import { ScrollStartDirective } from './directives/scroll-start.directive';
+import { SidebarComponent } from './components/common/sidebar/sidebar.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorComponent,
     ListviewComponent,
-    ScrollStartDirective
+    ScrollStartDirective,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +41,9 @@ import { ScrollStartDirective } from './directives/scroll-start.directive';
     MatProgressBarModule,
     MatTableModule,
     MatDividerModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
