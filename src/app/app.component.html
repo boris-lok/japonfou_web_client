@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<div class="app-wrapper">
+  <div class="header-wrapper"
+       *ngIf="showHeader">
+    <p>Header</p>
+  </div>
+
+  <div class="side-nav-wrapper"
+       *ngIf="showSideNav">
+    <p>SideNav</p>
+  </div>
+
+  <div class="content-wrapper">
+
+  </div>
+
+  <div class="footer-wrapper"
+       *ngIf="showFooter">
+    <p>Footer</p>
+  </div>
+</div>
