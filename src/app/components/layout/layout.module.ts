@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {SidenavComponent} from './sidenav/sidenav.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -12,10 +13,11 @@ import {SidenavComponent} from './sidenav/sidenav.component';
     FooterComponent,
     SidenavComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatIconModule
+    ],
   exports: [
     HeaderComponent,
     FooterComponent,

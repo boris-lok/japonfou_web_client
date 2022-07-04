@@ -1,16 +1,16 @@
 <div class="app-wrapper">
   <div class="header-wrapper"
        *ngIf="showHeader">
-    <p>Header</p>
+    <app-header></app-header>
   </div>
 
   <div class="side-nav-wrapper"
        *ngIf="showSideNav">
-    <p>SideNav</p>
+    <app-sidenav></app-sidenav>
   </div>
 
   <div class="content-wrapper">
-
+    <router-outlet></router-outlet>
   </div>
 
   <div class="footer-wrapper"
