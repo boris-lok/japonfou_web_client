@@ -82,15 +82,20 @@
         display: inline-block;
         max-width: 0;
         overflow: hidden;
+        opacity: 0;
         padding: 0;
         font-size: 1.25rem;
         font-weight: 400;
-        transition: padding-right .3s ease, max-width .3s ease, padding-left .3s ease;
+        transition: padding-right .3s ease,
+        max-width .3s ease,
+        padding-left .3s ease,
+        opacity .3s ease;
 
         &.sidenav-collapsed {
           overflow: hidden;
           padding: 0 .5rem;
           max-width: 100%;
+          opacity: 1;
         }
       }
     }

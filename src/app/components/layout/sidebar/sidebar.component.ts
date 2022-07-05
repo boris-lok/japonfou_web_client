@@ -27,28 +27,31 @@ export class SidebarComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize = (event: any) => {
+  onResize = (_: any) => {
     this.screenWidth = window.innerWidth;
     if (this.screenWidth <= 768) {
-      this.closeSidebar();
+      this.collapsed = false;
     }
+    this.changeToggleSidebar(this.collapsed, this.screenWidth, true);
   }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
   }
 
-  toggleCollapse = (): void => {
-    this.collapsed = !this.collapsed;
-    this.fireEvent();
+  toggleCollapse = (fireEvent: boolean = false): void => {
+    this.changeToggleSidebar(!this.collapsed, this.screenWidth, fireEvent);
   }
 
-  closeSidebar = (): void => {
-    this.collapsed = false;
-    this.fireEvent();
+  closeSidebar = (fireEvent: boolean = false): void => {
+    this.changeToggleSidebar(false, this.screenWidth, fireEvent);
   }
 
-  fireEvent = () => {
-    this.onToggleSidebar.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  private changeToggleSidebar = (collapsed: boolean, screenWidth: number, fireEvent: boolean) => {
+    this.screenWidth = screenWidth;
+    this.collapsed = collapsed;
+    if (fireEvent) {
+      this.onToggleSidebar.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+    }
   }
 }
