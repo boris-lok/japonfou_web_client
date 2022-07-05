@@ -1,15 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 
+interface SidebarToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  showHeader: boolean = false;
-  showSideNav: boolean = false;
-  showFooter: boolean = false;
+  showSidebar: boolean = true;
+  isSidebarCollapsed: boolean = false;
+  screenWidth: number = 0;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
@@ -19,10 +24,13 @@ export class AppComponent implements OnInit {
       .events
       .subscribe(e => {
         if (e instanceof NavigationEnd) {
-          this.showHeader = this.activatedRoute.firstChild?.snapshot.data['showHeader'] ?? false;
-          this.showSideNav = this.activatedRoute.firstChild?.snapshot.data['showSideNav'] ?? false;
-          this.showFooter = this.activatedRoute.firstChild?.snapshot.data['showFooter'] ?? false;
+          this.showSidebar = this.activatedRoute.firstChild?.snapshot.data['showSidebar'] ?? false;
         }
       });
+  }
+
+  onToggleSidebar = (data: SidebarToggle): void => {
+    this.isSidebarCollapsed = data.collapsed;
+    this.screenWidth = data.screenWidth;
   }
 }

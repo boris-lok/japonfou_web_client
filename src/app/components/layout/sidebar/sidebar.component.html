@@ -1,0 +1,37 @@
+<div class="sidenav"
+     [ngClass]="collapsed ? 'sidenav-collapsed': '' ">
+  <div class="sidenav-header"
+       [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+    <div class="menu-icon"
+         (click)="toggleCollapse()"
+         *ngIf="!collapsed">
+      <fa-icon [icon]="menuIcon"
+               class="fa-lg"></fa-icon>
+    </div>
+    <div class="menu-icon"
+         *ngIf="collapsed"
+         (click)="closeSidebar()">
+      <fa-icon [icon]="closeIcon"
+               class="fa-lg"></fa-icon>
+    </div>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+  <ul class="sidenav-wrapper">
+    <li class="sidenav-item-wrapper"
+        *ngFor="let data of navData"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+      <a class="sidenav-item-link"
+         [routerLink]="[data.routeLink]">
+        <div class="sidenav-item">
+          <div class="sidenav-item-icon">
+            <fa-icon [icon]="data.icon"
+                     [ngClass]="collapsed ? 'fa-lg' : ''"></fa-icon>
+          </div>
+          <div class="sidenav-item-text"
+               [ngClass]="collapsed ? 'sidenav-collapsed': ''"> {{ data.label }}</div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

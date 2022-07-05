@@ -1,20 +1,10 @@
 <div class="app-wrapper">
-  <div class="header-wrapper"
-       *ngIf="showHeader">
-    <app-header></app-header>
-  </div>
-
-  <div class="side-nav-wrapper"
-       *ngIf="showSideNav">
-    <app-sidenav></app-sidenav>
+  <div class="sidebar-wrapper"
+       *ngIf="showSidebar">
+    <app-sidebar (onToggleSidebar)="onToggleSidebar($event)"></app-sidebar>
   </div>
 
   <div class="content-wrapper">
     <router-outlet></router-outlet>
-  </div>
-
-  <div class="footer-wrapper"
-       *ngIf="showFooter">
-    <p>Footer</p>
   </div>
 </div>

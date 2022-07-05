@@ -9,6 +9,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {EditorModule} from "./components/customer/editor/editor.module";
 import {ListviewModule} from "./components/customer/listview/listview.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {faHome} from "@fortawesome/free-solid-svg-icons";
 
 @NgModule({
   declarations: [
@@ -28,4 +30,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(
+      faHome,
+    )
+  }
 }

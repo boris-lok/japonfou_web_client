@@ -1,27 +1,25 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from "@angular/router";
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
-import {SidenavComponent} from './sidenav/sidenav.component';
 import {MatIconModule} from "@angular/material/icon";
+import {SidebarComponent} from './sidebar/sidebar.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    SidenavComponent
+    SidebarComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        MatIconModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatIconModule,
+    FontAwesomeModule,
+    MatDividerModule
+  ],
   exports: [
-    HeaderComponent,
-    FooterComponent,
-    SidenavComponent
+    SidebarComponent,
   ]
 })
 export class LayoutModule {
