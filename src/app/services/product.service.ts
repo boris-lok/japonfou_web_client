@@ -1,35 +1,35 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from "./api.service";
 import {HttpParams} from "@angular/common/http";
-import {Observable, of} from "rxjs";
-import {ICustomer} from "../models/customer.class";
+import {IProduct} from "../models/product.class";
+import {Observable} from "rxjs";
 import {IPagination} from "../models/pagination.class";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class ProductService {
+
   constructor(private apiService: ApiService) {
   }
 
-  get = (id: number): Observable<ICustomer> => {
+  get = (id: number) => {
     let params = new HttpParams({fromObject: {id: id}})
     return this.apiService
-      .get('/v1/customers', params)
+      .get('/v1/products', params)
   }
 
-  save = (customer: ICustomer): Observable<ICustomer> => {
-    // update customer when customer id isn't nullable.
-    if (customer.id) {
+  save = (product: IProduct): Observable<IProduct> => {
+    if (product.id) {
       return this.apiService
-        .put('/v1/customers', customer);
+        .put('/v1/products', product);
     } else {
       return this.apiService
-        .post('/v1/customers', customer);
+        .post('/v1/products', product);
     }
   }
 
-  getAllCustomers = (data: IPagination): Observable<ICustomer[]> => {
+  getProducts = (data: IPagination): Observable<IProduct[]> => {
     let params = new HttpParams({
       fromObject: {
         ...data.keyword && {query: data.keyword},
@@ -39,6 +39,6 @@ export class CustomerService {
     });
 
     return this.apiService
-      .get('/v1/customers', params)
+      .get('/v1/products', params)
   }
 }

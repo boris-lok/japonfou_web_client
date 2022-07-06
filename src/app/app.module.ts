@@ -6,8 +6,9 @@ import {AppComponent} from './app.component';
 import {ScrollStartDirective} from './directives/scroll-start.directive';
 import {LayoutModule} from "./components/layout/layout.module";
 import {HttpClientModule} from "@angular/common/http";
-import {EditorModule} from "./components/customer/editor/editor.module";
-import {ListviewModule} from "./components/customer/listview/listview.module";
+import {EditorModule as CustomerEditorModule} from "./components/customer/editor/editor.module";
+import {EditorModule as ProductEditorModule} from "./components/product/editor/editor.module";
+import {ListviewModule as CustomerListviewModule} from "./components/customer/listview/listview.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
@@ -23,8 +24,9 @@ import {faHome} from "@fortawesome/free-solid-svg-icons";
     AppRoutingModule,
     HttpClientModule,
     LayoutModule,
-    EditorModule,
-    ListviewModule,
+    CustomerEditorModule,
+    ProductEditorModule,
+    CustomerListviewModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,9 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {LoginComponent} from "./components/login/login.component";
-import {EditorComponent} from "./components/customer/editor/editor.component";
-import {ListviewComponent} from "./components/customer/listview/listview.component";
+import {EditorComponent as CustomerEditorComponent} from "./components/customer/editor/editor.component";
+import {EditorComponent as ProductEditorComponent} from "./components/product/editor/editor.component";
+import {ListviewComponent as CustomerListviewComponent} from "./components/customer/listview/listview.component";
 
 const routes: Routes = [
   {
@@ -21,17 +22,21 @@ const routes: Routes = [
     loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule),
   }, {
     path: 'customers/editor',
-    component: EditorComponent,
+    component: CustomerEditorComponent,
     loadChildren: () => import('./components/customer/editor/editor.module').then(m => m.EditorModule),
   }, {
     path: 'customers/editor/:id',
-    component: EditorComponent,
+    component: CustomerEditorComponent,
     loadChildren: () => import('./components/customer/editor/editor.module').then(m => m.EditorModule),
   }, {
     path: 'customers',
-    component: ListviewComponent,
+    component: CustomerListviewComponent,
     loadChildren: () => import('./components/customer/listview/listview.module').then(m => m.ListviewModule),
     data: {showSidebar: true}
+  }, {
+    path: 'products/editor',
+    component: ProductEditorComponent,
+    loadChildren: () => import('./components/product/editor/editor.module').then(m => m.EditorModule),
   }
 ];
 

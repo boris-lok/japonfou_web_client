@@ -46,7 +46,11 @@ export class ListviewComponent implements OnInit, OnDestroy {
   fetchCustomers = () => {
     this.loading.show();
     this.customerService
-      .getAllCustomers(null, this.paginationService.getPage(), this.paginationService.page_size)
+      .getAllCustomers({
+        keyword: null,
+        page: this.paginationService.getPage(),
+        page_size: this.paginationService.page_size
+      })
       .pipe(
         takeUntil(this.ngDestroy$),
         finalize(this.loading.hide)

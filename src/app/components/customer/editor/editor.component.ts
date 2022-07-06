@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../../../environments/environment";
 import {CustomerService} from "../../../services/customer.service";
-import {finalize, Subject, takeUntil} from "rxjs";
+import {defer, finalize, ObservableInput, Subject, takeUntil, tap} from "rxjs";
 import {Location} from "@angular/common";
 import {LoadingService} from "../../../services/loading.service";
 
@@ -94,12 +94,13 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   fetchCustomer = (id: number) => {
-    this.loading.show();
-    this.customerService
-      .get(id)
-      .pipe(
-        takeUntil(this.ngDestroy$),
-        finalize(this.loading.hide)
+    this.loading
+      .defer(this.customerService
+        .get(id)
+        .pipe(
+          takeUntil(this.ngDestroy$),
+          finalize(this.loading.hide)
+        )
       )
       .subscribe({
         next: (value) => {
@@ -116,7 +117,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   update = (value: Object) => Object.assign(this.customer, value)
 
   submit = () => {
-    this.loading.show();
     this.errorMessage = null;
     this.isSubmitted = true;
 
@@ -125,19 +125,21 @@ export class EditorComponent implements OnInit, OnDestroy {
       ...this.customerForm.value
     });
 
-    this.customerService
-      .save(this.customer)
-      .pipe(
-        takeUntil(this.ngDestroy$),
-        finalize(this.loading.hide)
-      )
+    this.loading.defer(
+      this.customerService
+        .save(this.customer)
+        .pipe(
+          takeUntil(this.ngDestroy$),
+          finalize(this.loading.hide)
+        )
+    )
       .subscribe({
-        next: (value) => console.log(`create customer success.`),
+        next: (value) => console.info(`create customer success.`),
         error: (e) => {
           this.errorMessage = `Can't create/update customer, and the reason is: ${e.message}`;
           console.error(e)
         }
-      });
+      })
   }
 
   cancel = () => this.location.back();

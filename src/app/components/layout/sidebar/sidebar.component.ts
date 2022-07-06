@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
-import {navbarData} from "./nav-data";
+import {navbarData} from "../../../constants/nav-data";
 import {faClose, faEllipsisVertical} from "@fortawesome/free-solid-svg-icons";
 
 interface SidebarToggle {

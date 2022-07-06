@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, defer, Observable, ObservableInput} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +14,11 @@ export class LoadingService {
   show = () => this._loading.next(true);
 
   hide = () => this._loading.next(false);
+
+  defer = (next: Observable<any>): Observable<any> => {
+    return defer((): ObservableInput<any> => {
+      this.show();
+      return next;
+    });
+  }
 }
